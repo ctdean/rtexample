@@ -1,0 +1,10 @@
+;; -*- clojure -*-
+
+(require
+ '[monger.core :as mg]
+ '[monger.collection :as mc])
+
+(def mongo (mg/connect-via-uri "mongodb://127.0.0.1/rtexample"))
+
+;; Add a unique index
+(mc/ensure-index (:db mongo) "users" {:email 1} {:unique true })
